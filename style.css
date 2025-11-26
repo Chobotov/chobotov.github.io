@@ -339,28 +339,116 @@ summary {
 	border-radius: var(--radius-md);
 	box-shadow: var(--shadow-soft);
 	background-color: #000;
+
+	/* reserve vertical space so fallback posters are visible while media loads */
+	min-height: 360px; /* larger default so carousel looks more prominent */
 }
 
 .slide { /* слайд */
 	width: 100%;
 	height: 100%;
+	min-height: 360px; /* default slide height */
+	display: flex;
+	flex-direction: column; /* media above, caption below */
+	position: relative;
+	overflow: hidden; /* keep media inside the slide */
 }
 
 .slide img {
 	width: 100%;
-	height: auto;
+	height: 100%;
 	display: block;
+}
+
+/* Video slides: behave like images, responsive and centered. */
+
+/* By default show the poster/fallback image and hide the actual <video>
+   until the video has loaded (canplay). This avoids showing a grey empty
+   video rectangle when the video source is invalid or blocked by CORS. */
+.slide-video {
+	width: 100%;
+	height: 100%;
+	display: block; /* show poster by default so users see an image while video loads */
+	object-fit: contain; /* show whole frame without cropping */
+	object-position: center center;
+	background: #000; /* consistent fallback background */
+	position: relative; /* placed inside slide */
+	top: 0; left: 0;
+}
+
+/* fallback image shown when a video fails to load or is hidden */
+.slide-video-fallback {
+	display: block; /* show by default; script hides it when a video loads */
+	width: 100%;
+	height: 100%;
+	object-fit: contain; /* show the whole poster image */
+	object-position: center center;
+	background: #000;
+	position: relative;
+}
+
+/* Ensure the slide anchor fills the top area and lets caption sit below */
+#slider .slide > a {
+	display: block;
+	width: 100%;
+	flex: 1 1 auto; /* grow to fill the top portion of the slide */
+	position: relative; /* so overlay can position inside */
+}
+
+/* small overlay shown when video fails to load to help debugging */
+.video-error-overlay {
+	position: absolute;
+	right: 12px;
+	top: 12px;
+	z-index: 6;
+	background: rgba(0,0,0,0.6);
+	color: #ffffff;
+	padding: 8px 10px;
+	border-radius: 8px;
+	font-size: 13px;
+	line-height: 1.25;
+}
+.video-error-overlay a { color: #fff; text-decoration: underline; }
+
+/* Play overlay removed */
+
+/* Larger screens get a taller carousel */
+@media (min-width: 992px) {
+	#slider {
+		min-height: 520px;
+	}
+	.slide {
+		min-height: 520px;
+	}
+	.slide-video, .slide-video-fallback {
+		min-height: 420px;
+		max-height: 780px;
+		height: 100%;
+	}
+}
+
+/* Small screens: keep carousel compact */
+@media (max-width: 480px) {
+	#slider {
+		min-height: 220px;
+	}
+	.slide {
+		min-height: 220px;
+	}
+	.slide-video, .slide-video-fallback {
+		min-height: 160px;
+		max-height: 320px;
+		height: 100%;
+	}
 }
 
 .game-caption {
 	padding: 12px 16px 16px;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.85));
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.12), rgba(0, 0, 0, 0.5));
 	color: #ffffff;
 	font-size: 14px;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
+	position: relative; /* now sits right below the media */
+	border-top: 1px solid rgba(255,255,255,0.03);
 }
 
 .game-title {
@@ -413,35 +501,6 @@ summary {
 
 .sli-links .control-slide.active {
 	background-position: center top;
-}
-
-#prewbutton,
-#nextbutton { /* ссылки "следующий" и "предыдущий" */
-	display: block;
-	width: 32px;
-	height: 100%;
-	position: absolute;
-	top: 0;
-	overflow: hidden;
-	text-indent: -999px;
-	background: url(arrowBg.png) left center no-repeat;
-	opacity: 0.8;
-	z-index: 3;
-	outline: none !important;
-}
-
-#prewbutton {
-	left: 8px;
-}
-
-#nextbutton {
-	right: 8px;
-	background: url(arrowBg.png) right center no-repeat;
-}
-
-#prewbutton:hover,
-#nextbutton:hover {
-	opacity: 1;
 }
 
 /* Experience */
@@ -503,12 +562,27 @@ summary {
 	min-width: 120px;
 }
 
+/* When an experience image is landscape (wider than tall), allow a bigger wrapper
+   so the preview appears larger on desktop and tablet screens. */
+.project-image-wrapper.landscape {
+	flex: 0 0 240px; /* wider preview for landscape images */
+	min-width: 240px;
+}
+
 .project-image {
 	width: 100%;
 	height: auto;
 	border-radius: var(--radius-sm);
 	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 	display: block;
+}
+
+/* Keep landscape image behavior consistent inside the larger wrapper. Use contain
+   so images stay fully visible and preserve aspect ratio. */
+.project-image.landscape {
+	object-fit: contain;
+	width: 100%;
+	height: auto;
 }
 
 .project-details {
@@ -746,6 +820,13 @@ footer {
 		width: 100%;
 		max-width: 200px;
 		margin: 0 auto;
+	}
+
+	/* On smaller screens, landscape wrappers should collapse to full-width like others */
+	.project-image-wrapper.landscape {
+		max-width: 100%;
+		min-width: 0;
+		flex-basis: auto;
 	}
 }
 

@@ -28,7 +28,7 @@
 				<li><a href="#Experience" data-i18n="nav.experience">Experience</a></li>
 				<li><a href="#Skills" data-i18n="nav.skills">Skills</a></li>
 				<li><a href="#Achievements" data-i18n="nav.achievements">Achievements</a></li>
-				<li><a href="#Games" data-i18n="nav.games">Games</a></li>
+				<li><a href="#My Projects" data-i18n="nav.games">Games</a></li>
 				<li><a href="#FeedBack" data-i18n="nav.feedback">Feedback</a></li>
 		</ul>
 	</nav>
@@ -38,9 +38,8 @@
 			<div class="about-image">
 				<img src="img/iphone.png" alt="Phone with games preview">
 			</div>
-			<div class="aboutMe">
+				<div class="aboutMe">
 				<h3 data-i18n="about.title">About me</h3>
-				<aside>
 					<p data-i18n="about.p1">Hi! My name is <b>Nikita Chebotov</b>, I am a C# Unity developer.</p>
 					<p data-i18n="about.p2">I have more than 8 years of development experience, including 5 years as a Unity developer at Black Bears and experience at Azur Games.</p>
 					<p data-i18n="about.p3">I work on mobile games and VR projects, from match‑3 and idle RPGs to a full VR arena ecosystem. I also develop personal projects in various genres: clickers, idle games, fighting games, management simulators, and platformers for Android, PC, and WebGL.</p>
@@ -67,8 +66,8 @@
 				</div>
 				<div class="experience-project">
 					<div class="project-content">
-						<div class="project-image-wrapper">
-							<img src="img/railroad-empire.png" alt="RailRoad Empire" class="project-image" onerror="this.style.display='none'">
+						<div class="project-image-wrapper landscape">
+							<img src="img/railroad-empire.png" alt="RailRoad Empire" class="project-image landscape" onerror="this.style.display='none'">
 						</div>
 						<div class="project-details">
 							<h4>
@@ -151,8 +150,8 @@
 					</div>
 					<div class="experience-project">
 						<div class="project-content">
-							<div class="project-image-wrapper">
-								<img src="img/legendlands.png" alt="Legendlands" class="project-image" onerror="this.style.display='none'">
+							<div class="project-image-wrapper landscape">
+								<img src="img/legendlands.png" alt="Legendlands" class="project-image landscape" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -188,8 +187,8 @@
 					</div>
 					<div class="experience-project">
 						<div class="project-content">
-							<div class="project-image-wrapper">
-								<img src="img/vr-arena.png" alt="Black Bears VR Arena" class="project-image" onerror="this.style.display='none'">
+							<div class="project-image-wrapper landscape">
+								<img src="img/vr-arena.png" alt="Black Bears VR Arena" class="project-image landscape" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -284,7 +283,7 @@
 		</div>
 	</section>
 
-	<section id="Games" class="section reveal">
+	<section id="My Projects" class="section reveal">
 		<div class="section-title-centered">
 			<p class="section-eyebrow" data-i18n="games.eyebrow">Portfolio</p>
 			<h2 data-i18n="games.title">Games</h2>
@@ -292,8 +291,7 @@
 		<div id="slider-wrap">
 				<div id="slider">
 				<div class="slide">
-					<a href="http://play.google.com/store/apps/details?id=com.chobotov.tapswap" target="_blank" rel="noopener noreferrer">
-						<img src="img/TapSwap.png" alt="Tap Swap game">
+					<img class="slide-video-fallback" src="img/TapSwap.png" alt="Tap Swap game (fallback)">
 					</a>
 					<div class="game-caption">
 						<div class="game-title" data-i18n="games.tapSwapTitle">Tap Swap</div>
@@ -301,31 +299,89 @@
 					</div>
 				</div>
 				<div class="slide">
-					<a href="https://github.com/Chobotov/Project-Battle" target="_blank" rel="noopener noreferrer">
-						<img src="img/ProjectBattle.png" alt="Project Battle game">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/ProjectBattle.png">
+							<source src="video/Video Preview.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/ProjectBattle.png" alt="Project Battle game (fallback)">
 					</a>
 					<div class="game-caption">
 						<div class="game-title" data-i18n="games.projectBattleTitle">Project Battle</div>
 						<p class="game-meta" data-i18n="games.projectBattleMeta">Prototype of an action game. Open-source project with experiments in combat mechanics.</p>
 					</div>
 				</div>
-							<div class="slide">
-					<img src="img/Soon2.png" alt="New games coming soon">
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP1.png">
+							<source src="video/Pixel Render Feature.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP1.png" alt="Pixel Render Feature (fallback)">
 					<div class="game-caption">
-						<div class="game-title" data-i18n="games.comingSoonTitle">Coming soon</div>
-						<p class="game-meta" data-i18n="games.comingSoonMeta">New mobile projects are in development. Stay tuned!</p>
+						<div class="game-title" data-i18n="games.pixelRenderFeatureTitle">Pixel Render Feature</div>
+						<p class="game-meta" data-i18n="games.pixelRenderFeatureMeta">Pixel Render Feature</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP2.png">
+							<source src="video/Game Engine.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP2.png" alt="Merge game engine (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.mergeGameEngineTitle">Merge game engine</div>
+						<p class="game-meta" data-i18n="games.mergeGameEngineMeta">Merge game engine</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP3.png">
+							<source src="video/Knuckle Fight.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP3.png" alt="Knuckle Fight (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.knukleFightTitle">Knukle fight prototype</div>
+						<p class="game-meta" data-i18n="games.knukleFightMeta">Knukle fight prototype</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP4.png">
+							<source src="video/Space-Clicker.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP4.png" alt="Space Clicker (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.spaceClickerTitle">Space clicker prototype</div>
+						<p class="game-meta" data-i18n="games.spaceClickerMeta">Space clicker prototype</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP5.png">
+							<source src="video/Отрывок игры.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP5.png" alt="Platformer (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.platformerGameJamTitle">Platformer for GameJam</div>
+						<p class="game-meta" data-i18n="games.platformerGameJamMeta">Platformer for GameJam</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP6.png">
+							<source src="video/TLOU2 Controller.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP6.png" alt="TLOU2 Controller (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.tlou2Title">TheLastOfUs2 Player Controller prototype</div>
+						<p class="game-meta" data-i18n="games.tlou2Meta">TheLastOfUs2 Player Controller prototype</p>
+					</div>
+				</div>
+				<div class="slide">
+						<video class="slide-video" playsinline muted autoplay loop controls preload="metadata" poster="img/PP7.png">
+							<source src="video/Store Stories.mp4" type="video/mp4">
+						</video>
+						<img class="slide-video-fallback" src="img/PP7.png" alt="Store Stories (fallback)">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.storeTitle">StoreStories prototype</div>
+						<p class="game-meta" data-i18n="games.storeMeta">StoreStories prototype</p>
 					</div>
 				</div>
 			</div>
-			<div class="games-legend">
-				<span class="games-legend-item" data-i18n="games.legend.tapSwap">Tap Swap</span>
-				<span class="games-legend-separator">•</span>
-				<span class="games-legend-item" data-i18n="games.legend.projectBattle">Project Battle</span>
-				<span class="games-legend-separator">•</span>
-				<span class="games-legend-item" data-i18n="games.legend.more">More games coming soon</span>
-							</div>
-						</div>
-					</section>
+		</div>
+		</section>
 
 	<section id="PolicyPrivacy" class="section reveal">
 						<div class="pptext">
@@ -420,10 +476,9 @@
 			</div>
 						</div>
 					</section>
-
 				<footer>
 		<span data-i18n="footer">©2019 Chobotov</span>
 				</footer>
 	</div>
 </body>
-				</html>
+</html>

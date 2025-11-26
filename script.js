@@ -9,9 +9,107 @@ $(document).ready(function(e) {
 		 "top":'0', "left": '0'}).hide().eq(0).show();
 	var slideNum = 0;
 	var slideTime;
+	var videoPlaying = false; // true when a slide video is actively playing (user or autoplay)
 	slideCount = $("#slider .slide").size();
+
+	// Pause every video inside the slider
+	function pauseAllSlideVideos() {
+		$('#slider .slide video').each(function () {
+			try { this.pause(); } catch(e) {}
+		});
+		// if we pause all videos programmatically, make sure rotation can continue
+		videoPlaying = false;
+	}
+
+	// Try to play the video in the current slide (index provided)
+	function tryPlaySlideVideo(index) {
+		var el = $('.slide').eq(index).find('video').get(0);
+		if (!el) return;
+		el.muted = true; // muted so autoplay usually works
+		el.loop = true;
+		// attach handlers to control auto-rotation while the video plays
+		el.onplay = function() {
+			videoPlaying = true;
+			clearTimeout(slideTime);
+		};
+		el.onpause = function() {
+			videoPlaying = false;
+			rotator();
+		};
+		el.onended = function() {
+			videoPlaying = false;
+			rotator();
+		};
+		var playPromise = el.play();
+		if (playPromise && playPromise.catch) {
+			playPromise.catch(function () {
+				// autoplay blocked — user can press play via controls
+			});
+		}
+	}
+
+	// Try to start playing video for the first visible slide
+	// (slides are hidden above and the first slide is shown)
+	tryPlaySlideVideo(0);
+
+	// Attach handlers that will show the poster/fallback image when a video fails
+	function attachVideoFallbackHandlers() {
+		$('#slider .slide').each(function () {
+			var $slide = $(this);
+			var vid = $slide.find('video').get(0);
+			var $fallback = $slide.find('.slide-video-fallback');
+			// attach or locate overlay used to show error/debug info for this slide
+			var $overlay = $slide.find('.video-error-overlay');
+			if (!$overlay.length) {
+				// append to slide anchor when available, otherwise to slide itself
+				var $overlayContainer = $slide.find('a').length ? $slide.find('a') : $slide;
+				$overlay = $('<div class="video-error-overlay" aria-hidden="true" style="display:none"></div>').appendTo($overlayContainer);
+			}
+			if (!$fallback.length) return; // nothing to do
+
+			// no click-to-play overlay required — autoplay will attempt and user can use native controls
+			if (!vid) { $fallback.show(); return; }
+
+			// When video can play, hide fallback and the play overlay
+			$(vid).on('loadeddata canplay canplaythrough', function () {
+					try { $overlay.hide(); $fallback.hide(); $(vid).show(); } catch (e) {}
+			});
+
+			// On error or no data — show fallback and play overlay and debug overlay
+			$(vid).on('error emptied stalled', function () {
+				try {
+					$(vid).hide();
+					$fallback.show();
+					// play overlay removed — just show fallback and debug overlay
+					// show useful debug overlay linking to the video src so user can open it in a new tab
+					var src = $(vid).find('source').attr('src') || vid.currentSrc || '';
+					$overlay.html('<strong>Video load failed</strong><br><a href="' + src + '" target="_blank" rel="noopener noreferrer">Open source</a>').show();
+				} catch (e) {}
+			});
+
+			// Initial quick check: if the video already has an error or no data, reveal fallback
+			try {
+				if (vid.error || vid.readyState === 0) {
+					$(vid).hide();
+					$fallback.show();
+					// play overlay removed — just show fallback and debug overlay
+					var src = $(vid).find('source').attr('src') || vid.currentSrc || '';
+					$overlay.html('<strong>Video not ready</strong><br><a href="' + src + '" target="_blank" rel="noopener noreferrer">Open source</a>').show();
+				} else {
+					$fallback.hide();
+					$overlay.hide();
+					// no overlay to hide
+					$(vid).show();
+				}
+			} catch (e) {}
+		});
+	}
+
+	attachVideoFallbackHandlers();
 	var animSlide = function(arrow){
 		clearTimeout(slideTime);
+		// pause any videos playing in the outgoing slide
+		pauseAllSlideVideos();
 		$('.slide').eq(slideNum).fadeOut(hwSlideSpeed);
 		if(arrow == "next"){
 			if(slideNum == (slideCount-1)){slideNum=0;}
@@ -25,7 +123,10 @@ $(document).ready(function(e) {
 		else{
 			slideNum = arrow;
 			}
-		$('.slide').eq(slideNum).fadeIn(hwSlideSpeed, rotator);
+		$('.slide').eq(slideNum).fadeIn(hwSlideSpeed, function() {
+			tryPlaySlideVideo(slideNum);
+			rotator();
+		});
 		$(".control-slide.active").removeClass("active");
 		$('.control-slide').eq(slideNum).addClass('active');
 		}
@@ -53,11 +154,23 @@ var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href=
 	});
 	var pause = false;
 	var rotator = function(){
-			if(!pause){slideTime = setTimeout(function(){animSlide('next')}, hwTimeOut);}
+			// only rotate when not paused by hover and no video is currently playing
+			if(!pause && !videoPlaying){
+				slideTime = setTimeout(function(){animSlide('next')}, hwTimeOut);
 			}
-	$('#slider-wrap').hover(	
-		function(){clearTimeout(slideTime); pause = true;},
-		function(){pause = false; rotator();
+	}
+	$('#slider-wrap').hover(    
+		function(){
+			clearTimeout(slideTime);
+			pause = true;
+			// when user hovers the slider, pause rotation and any playing videos
+			pauseAllSlideVideos();
+		},
+		function(){
+			pause = false;
+			rotator();
+			// resume current slide video if present
+			tryPlaySlideVideo(slideNum);
 		});
 	rotator();
 
@@ -100,7 +213,7 @@ var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href=
 			'nav.experience': 'Experience',
 			'nav.skills': 'Skills',
 			'nav.achievements': 'Achievements',
-			'nav.games': 'Games',
+			'nav.games': 'My Projects',
 			'nav.privacy': 'Privacy Policy',
 			'nav.feedback': 'Feedback',
 			'about.title': 'About me',
@@ -111,16 +224,25 @@ var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href=
 			'about.btn.games': 'View my games',
 			'about.btn.contact': 'Contact me',
 			'games.eyebrow': 'Portfolio',
-			'games.title': 'Games',
+			'games.title': 'My Projects',
 			'games.tapSwapTitle': 'Tap Swap',
 			'games.tapSwapMeta': 'Arcade tap game for Android. Simple controls, fast sessions and score chasing.',
 			'games.projectBattleTitle': 'Project Battle',
 			'games.projectBattleMeta': 'Prototype of an action game. Open-source project with experiments in combat mechanics.',
-			'games.comingSoonTitle': 'Coming soon',
-			'games.comingSoonMeta': 'New mobile projects are in development. Stay tuned!',
-			'games.legend.tapSwap': 'Tap Swap',
-			'games.legend.projectBattle': 'Project Battle',
-			'games.legend.more': 'More games coming soon',
+			'games.pixelRenderFeatureTitle': 'Pixel Render Feature',
+			'games.pixelRenderFeatureMeta': 'Custom optimized render feature for pixeling 3D games',
+			'games.mergeGameEngineTitle': 'Merge Game Engine',
+			'games.mergeGameEngineMeta': 'An engine for the implementation of games such as suika game. Still work in progress for new features. Now it contains basic functions.',
+			'games.knukleFightTitle': 'Knukle Fight',
+			'games.knukleFightMeta': 'Prototype of knukle fight simulator',
+			'games.spaceClickerTitle': 'Space Clicker',
+			'games.spaceClickerMeta': 'Prototype of clicker managment game into space',
+			'games.platformerGameJamTitle': 'Platformer',
+			'games.platformerGameJamMeta': 'Platformer for DTF GameJam in 2 days develope',
+			'games.tlou2Title': 'Player Controller',
+			'games.tlou2Meta': 'Prototype of player controller clone of The Last of Us 2',
+			'games.storeTitle': 'Store Stories',
+			'games.storeMeta': 'Prototype of PaperPlease like game into store',
 			'experience.eyebrow': 'Career',
 			'experience.title': 'Work Experience',
 			'experience.azur.title': 'Azur Games – Unity Developer',
@@ -240,7 +362,7 @@ var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href=
 			'nav.experience': 'Опыт работы',
 			'nav.skills': 'Навыки',
 			'nav.achievements': 'Достижения',
-			'nav.games': 'Игры',
+			'nav.games': 'Мои проекты',
 			'nav.privacy': 'Политика конфиденциальности',
 			'nav.feedback': 'Обратная связь',
 			'about.title': 'Обо мне',
@@ -251,16 +373,25 @@ var $linkArrow = $('<a id="prewbutton" href="#">&lt;</a><a id="nextbutton" href=
 			'about.btn.games': 'Смотреть игры',
 			'about.btn.contact': 'Связаться со мной',
 			'games.eyebrow': 'Портфолио',
-			'games.title': 'Игры',
+			'games.title': 'Мои проекты',
 			'games.tapSwapTitle': 'Tap Swap',
 			'games.tapSwapMeta': 'Аркадная tap‑игра для Android. Простое управление, быстрые сессии и охота за рекордами.',
 			'games.projectBattleTitle': 'Project Battle',
 			'games.projectBattleMeta': 'Прототип экшен‑игры. Открытый проект с экспериментами в боевой системе.',
-			'games.comingSoonTitle': 'Скоро',
-			'games.comingSoonMeta': 'Новые мобильные проекты в разработке. Следите за обновлениями!',
-			'games.legend.tapSwap': 'Tap Swap',
-			'games.legend.projectBattle': 'Project Battle',
-			'games.legend.more': 'Скоро будут новые игры',
+			'games.pixelRenderFeatureTitle': 'Pixel Render Feature',
+			'games.pixelRenderFeatureMeta': 'Оптимизированная функция рендеринга для пикселизации 3D-игр',
+			'games.mergeGameEngineTitle': 'Merge Game Engine',
+			'games.mergeGameEngineMeta': 'Движок для реализации таких игр, как suika game. Продолжается работа над новыми функциями. Теперь он содержит базовые функции.',
+			'games.knukleFightTitle': 'Knukle Fight',
+			'games.knukleFightMeta': 'Прототип спортивного симулятора кулачных боев',
+			'games.spaceClickerTitle': 'Space Clicker',
+			'games.spaceClickerMeta': 'Прототип кликкера с элементами менеджемнта в стилистике космоса',
+			'games.platformerGameJamTitle': 'Platformer',
+			'games.platformerGameJamMeta': '2D платформе для DTF GameJam. Разработана за 2 дня.',
+			'games.tlou2Title': 'Player Controller',
+			'games.tlou2Meta': 'Прототип реализации контроллера персонажем из игры The Last of Us 2',
+			'games.storeTitle': 'Store Stories',
+			'games.storeMeta': 'Прототип PaperPlease подобной игры в сеттинге магазина',
 			'experience.eyebrow': 'Карьера',
 			'experience.title': 'Опыт работы',
 			'experience.azur.title': 'Azur Games – Unity Developer',
