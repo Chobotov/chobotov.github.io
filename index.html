@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
 	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name = "keywords" content = "Chobotov,Games,TapSwap,Партфолио">
 	<meta name = "description" content = "Блог о процессе обучения веб-технологиям">
 	<title>Chobotov</title>
@@ -9,126 +10,420 @@
 	<script src="script.js"></script>
 	<link rel="stylesheet" href="style.css"/>
 </head>
-<body link="black" alink="red" vlink="black">
+<body>
+	<div class="page-wrapper">
 	<header class="logo">
 		<base target="_self">
-		<img src = "img/Logo.png">
+			<img src="img/Logo.png" alt="Chobotov logo">
+			<p class="logo-subtitle" data-i18n="subtitle">Unity Game Developer</p>
+			<div class="lang-switcher" aria-label="Language switcher">
+				<button type="button" class="lang-btn lang-btn_active" data-lang="en">EN</button>
+				<button type="button" class="lang-btn" data-lang="ru">RU</button>
+			</div>
 	</header>
 	<!--Меню-->
-	<nav>
-		<ul>
-			<li><a href="#AboutMe">About me</a></li>
-			<li><a href="#Games">Games</a></li>
-			<li><a href="#PolicyPrivacy">Privacy Policy</a></li>
-			<li><a href="#FeedBack">Feedback</a></li>
+		<nav class="main-nav">
+			<ul>
+				<li><a href="#AboutMe" data-i18n="nav.about">About me</a></li>
+				<li><a href="#Experience" data-i18n="nav.experience">Experience</a></li>
+				<li><a href="#Skills" data-i18n="nav.skills">Skills</a></li>
+				<li><a href="#Achievements" data-i18n="nav.achievements">Achievements</a></li>
+				<li><a href="#Games" data-i18n="nav.games">Games</a></li>
+				<li><a href="#FeedBack" data-i18n="nav.feedback">Feedback</a></li>
 		</ul>
 	</nav>
 	<!--Обо мне-->
-	<section  id = "AboutMe">
-		<div class="about-contanier">
-			<div>
-				<img src = "img/iphone.png" usemap="#navigat">
+	<section id="AboutMe" class="section reveal">
+		<div class="about-container">
+			<div class="about-image">
+				<img src="img/iphone.png" alt="Phone with games preview">
 			</div>
-			<div class = "aboutMe">
-				<h3>About me</h3>
-				<aside><p>Hi! My name is <b>Nikita Chebotov</b> and
-					i am a developer of mobile games.     
-					I created this site so you can view my
-					<b>released games</b>, read the privacy 
-					policy, and <b>contact me</b>.
-					<p>Thank you!</p>
+			<div class="aboutMe">
+				<h3 data-i18n="about.title">About me</h3>
+				<aside>
+					<p data-i18n="about.p1">Hi! My name is <b>Nikita Chebotov</b>, I am a C# Unity developer.</p>
+					<p data-i18n="about.p2">I have more than 8 years of development experience, including 5 years as a Unity developer at Black Bears and experience at Azur Games.</p>
+					<p data-i18n="about.p3">I work on mobile games and VR projects, from match‑3 and idle RPGs to a full VR arena ecosystem. I also develop personal projects in various genres: clickers, idle games, fighting games, management simulators, and platformers for Android, PC, and WebGL.</p>
+					<p data-i18n="about.p4">I have experience as a lead developer on successful mobile projects and mentoring in VR simulator development.</p>
 					</aside>
+				<div class="about-actions">
+					<a href="#Games" class="btn primary-btn" data-i18n="about.btn.games">View my games</a>
+					<a href="#FeedBack" class="btn secondary-btn" data-i18n="about.btn.contact">Contact me</a>
+				</div>
 				</div>
 			</div>
 		</section>
 
-		<section id = "Games">
-			<center>
-			<div id = "slider-wrap">
-				<div id="slider">
-					<div class="slide"><a href="http://play.google.com/store/apps/details?id=com.chobotov.tapswap">
-						<img src="img/TapSwap.png" width="1500" height="1080"></a></div>
-						<div class="slide"><a href="https://github.com/Chobotov/Project-Battle">
-							<img src="img/ProjectBattle.png" width="1500" height="1080"></div>
-							<div class="slide">
-								<img src="img/Soon2.png"width="1500" height="1080"></a></div>
+	<section id="Experience" class="section reveal">
+		<div class="section-title-centered">
+			<p class="section-eyebrow" data-i18n="experience.eyebrow">Career</p>
+			<h2 data-i18n="experience.title">Work Experience</h2>
+		</div>
+		<div class="experience-timeline">
+			<div class="experience-item">
+				<div class="experience-header">
+					<h3 data-i18n="experience.azur.title">Azur Games – Unity Developer</h3>
+					<span class="experience-period" data-i18n="experience.azur.period">July 2025 – November 2025</span>
+				</div>
+				<div class="experience-project">
+					<div class="project-content">
+						<div class="project-image-wrapper">
+							<img src="img/railroad-empire.png" alt="RailRoad Empire" class="project-image" onerror="this.style.display='none'">
+						</div>
+						<div class="project-details">
+							<h4>
+								<a href="https://play.google.com/store/apps/details?id=rail.road.tycoon&hl=ru" target="_blank" rel="noopener noreferrer" class="project-link">
+									<span data-i18n="experience.azur.project.title">RailRoad Empire</span>
+								</a>
+							</h4>
+							<ul class="experience-list">
+						<li data-i18n="experience.azur.project.p1">Implemented full development cycle of game features: from architecture design and requirements approval to coding, testing, and integration.</li>
+						<li data-i18n="experience.azur.project.p2">Actively participated in project improvements: proposed architectural enhancements, workflow optimization, and code quality improvements (including introducing checklists and testing practices).</li>
+						<li data-i18n="experience.azur.project.p3">Wrote unit tests for critical components, ensuring stability when scaling the project.</li>
+						<li data-i18n="experience.azur.project.p4">Used Zenject to build flexible, modular, and easily testable architecture.</li>
+						<li data-i18n="experience.azur.project.p5">Integrated external SDKs.</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="experience-item">
+				<div class="experience-header">
+					<h3 data-i18n="experience.blackbears.title">Black Bears, Tambov – Unity Developer</h3>
+					<span class="experience-period" data-i18n="experience.blackbears.period">August 2020 – July 2025</span>
+				</div>
+				<div class="experience-projects">
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/color-mystery.png" alt="Color Mystery" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://apps.apple.com/us/app/color-mystery-happy-match-3/id1491920604" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.color.title">Color Mystery: Happy match 3</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.color.p1">Maintained and refactored a mobile match-3 and coloring game.</li>
+							<li data-i18n="experience.blackbears.color.p2">Developed tutorials for core game mechanics, independently created a meta event. UI layout.</li>
+							<li data-i18n="experience.blackbears.color.p3">UI layout.</li>
+								</ul>
 							</div>
 						</div>
-						</center>
-					</section>
-					<section id = "PolicyPrivacy">
-						<div class="pptext">
-							<center>
-							<dl>
-							<dt><h2><bdo dir="ltr">PRIVACY POLICY</bdo></h2></dt>
+					</div>
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/grand-fishing.png" alt="Grand Fishing Game" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://apps.apple.com/ru/app/grand-fishing-game-%D1%80%D1%8B%D0%B1%D0%B0%D0%BB%D0%BA%D0%B0/id1551704730" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.fishing.title">Grand Fishing Game</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.fishing.p1">Organized project architecture, developed features. Created technical specifications for 3D artists.</li>
+							<li data-i18n="experience.blackbears.fishing.p2">Created an editor for optimizing 3D locations, average FPS increased by 2x.</li>
+							<li data-i18n="experience.blackbears.fishing.p3">Developed AI for PVP mode, configurable by game designers through config files.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/legionlands.png" alt="Legionlands" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://play.google.com/store/apps/details?id=mobi.blackbears.legionlands" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.legion.title">Legionlands: auto battler game</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.legion.p1">Worked with LeoECS. Participated in code refactoring and implementing new mechanics.</li>
+							<li data-i18n="experience.blackbears.legion.p2">Optimized "fog of war" on the game map, FPS increased by 3x.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/legendlands.png" alt="Legendlands" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://play.google.com/store/apps/details?id=mobi.blackbears.legendlands" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.legend.title">Legendlands - The Legendary RPG</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.legend.p1">Implemented UI using MVVM pattern.</li>
+							<li data-i18n="experience.blackbears.legend.p2">Developed a system of customizable 3D screens with animated elements affecting gameplay, with depth effect via accelerometer.</li>
+							<li data-i18n="experience.blackbears.legend.p3">Integrated client application with game server for player data synchronization and online features.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/endless-lands.png" alt="Endless lands" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://play.google.com/store/apps/details?id=mobi.blackbears.endlesslands" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.endless.title">Endless lands - idle RPG</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.endless.p1">As lead developer, synchronized programmers' work and assigned tasks.</li>
+							<li data-i18n="experience.blackbears.endless.p2">As part of the team, implemented the project from concept to beta version in 2 months.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="experience-project">
+						<div class="project-content">
+							<div class="project-image-wrapper">
+								<img src="img/vr-arena.png" alt="Black Bears VR Arena" class="project-image" onerror="this.style.display='none'">
+							</div>
+							<div class="project-details">
+								<h4>
+									<a href="https://gate-vr.ru/" target="_blank" rel="noopener noreferrer" class="project-link">
+										<span data-i18n="experience.blackbears.vr.title">Black Bears VR Arena</span>
+									</a>
+								</h4>
+								<ul class="experience-list">
+							<li data-i18n="experience.blackbears.vr.p1">Participated in developing an ecosystem for a VR arena. Optimized all 3D locations, achieving 1.5x FPS increase.</li>
+							<li data-i18n="experience.blackbears.vr.p2">Developed a calibration algorithm for VR devices at a single point to synchronize position in real and virtual spaces.</li>
+							<li data-i18n="experience.blackbears.vr.p3">Implemented location coloring mechanics and prepared for network play.</li>
+							<li data-i18n="experience.blackbears.vr.p4">Developed modular AI architecture, reducing time to implement new AI opponents from several hours to 1 hour.</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="experience-item">
+				<div class="experience-header">
+					<h3 data-i18n="experience.personal.title">Personal Projects</h3>
+					<span class="experience-period" data-i18n="experience.personal.period">2018 – 2021</span>
+				</div>
+				<p data-i18n="experience.personal.desc">Developed educational PCVR simulators, a mobile app for employee attendance tracking, and a Windows Forms application for image processing.</p>
+			</div>
+		</div>
+	</section>
 
-							<dd><p>This privacy policy governs your use of the software applications for mobile devices that was created by Chebotov nikita, <br>The Applications are mobile video games.</br></p></dd>
-							<details>
-								<summary>More</summary>
+	<section id="Skills" class="section reveal">
+		<div class="section-title-centered">
+			<p class="section-eyebrow" data-i18n="skills.eyebrow">Technical</p>
+			<h2 data-i18n="skills.title">Skills</h2>
+		</div>
+		<div class="skills-grid">
+			<div class="skills-category">
+				<h3 data-i18n="skills.architecture.title">Architecture & Patterns</h3>
+				<ul class="skills-list">
+					<li data-i18n="skills.architecture.p1">OOP, SOLID, GoF Patterns, MV Pattern</li>
+					<li data-i18n="skills.architecture.p2">MVVM, Dependency Injection (Zenject, VContainer)</li>
+				</ul>
+			</div>
+			<div class="skills-category">
+				<h3 data-i18n="skills.unity.title">Unity & C#</h3>
+				<ul class="skills-list">
+					<li data-i18n="skills.unity.p1">Unity Engine, C#</li>
+					<li data-i18n="skills.unity.p2">Addressables, Asset Management</li>
+					<li data-i18n="skills.unity.p3">ECS (LeoECS, Morpeh ECS)</li>
+				</ul>
+			</div>
+			<div class="skills-category">
+				<h3 data-i18n="skills.libraries.title">Libraries & Frameworks</h3>
+				<ul class="skills-list">
+					<li data-i18n="skills.libraries.p1">UniRx, UniTask, R3</li>
+					<li data-i18n="skills.libraries.p2">DOTween</li>
+					<li data-i18n="skills.libraries.p3">FishNet (Multiplayer)</li>
+				</ul>
+			</div>
+			<div class="skills-category">
+				<h3 data-i18n="skills.integration.title">Integration & Optimization</h3>
+				<ul class="skills-list">
+					<li data-i18n="skills.integration.p1">Third-party SDK integration (AppLovin, Firebase, Yandex, etc.)</li>
+					<li data-i18n="skills.integration.p2">3D scene optimization, UI optimization, code optimization</li>
+				</ul>
+			</div>
+		</div>
+	</section>
 
-							<dt><h2><u>Information used by application.</u></h2></dt>
+	<section id="Achievements" class="section reveal">
+		<div class="section-title-centered">
+			<p class="section-eyebrow" data-i18n="achievements.eyebrow">Highlights</p>
+			<h2 data-i18n="achievements.title">Achievements</h2>
+		</div>
+		<ul class="achievements-list">
+			<li data-i18n="achievements.p1">Participated in several game jams and hackathons, winning 1st and 3rd places</li>
+			<li data-i18n="achievements.p2">Developed a mobile game from concept to beta version in 2 months</li>
+			<li data-i18n="achievements.p3">Organized project architectures</li>
+			<li data-i18n="achievements.p4">Created a comprehensive ecosystem for a VR arena, including a client for headsets, a Windows server application, a mobile companion app, and a launcher for equipment setup</li>
+			<li data-i18n="achievements.p5">Created projects using LeoECS, Morpeh ECS</li>
+			<li data-i18n="achievements.p6">Created a multiplayer project using FishNet</li>
+		</ul>
+	</section>
 
-							<dt><h2>User Provided Information</h2></dt>
+	<section id="Education" class="section reveal">
+		<div class="section-title-centered">
+			<p class="section-eyebrow" data-i18n="education.eyebrow">Background</p>
+			<h2 data-i18n="education.title">Education</h2>
+		</div>
+		<div class="education-item">
+			<h3 data-i18n="education.degree">Master's Degree in Computer Science</h3>
+			<p class="education-institution" data-i18n="education.university">Tambov State Technical University (TSTU), Tambov</p>
+			<p class="education-period" data-i18n="education.period">2021 – 2023</p>
+		</div>
+	</section>
 
-							<dd><p>The Applications currently do not collect any user provided information</p>
-
-							<p>We may also use the information you provided us to contact your from time to time to provide you with important information, required notices and marketing promotions.</p></dd>
-
-							<dt><h2>Automatically Collected Information</h2></dt>
-
-							<dd><p>The Applications may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile devices <abbr title="Identifier For Advertisers">IDFA</abbr> (for advertising), your mobile operating system, and information about the way you use the Application.</p></dd>
-
-							<dt><h2>Collecting precise real time location information of the device.</h2></dt>
-
-							<dd><p>This Application does not collect precise information about the location of your mobile device.</p></dd>
-
-							<dt><h2>Third parties access to information obtained by the Application.</h2><dt>
-
-							<dd><p>We will share your information with third parties only in the ways that are described in this privacy statement.</p>
-
-							<p>We may disclose User Provided and Automatically Collected Information:</p>
-							 
-							<p>-as required by law, such as to comply with a subpoena, or similar legal process;</p>
-							<p>-when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</p>
-							<p>-with our trusted services providers who work on our behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement.</p>
-							<p>-if Chebotov Nikita is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our Web site of any change in ownership or uses of this information, as well as any choices you may have regarding this information.</p>
-							<p>-to advertisers and third party advertising networks and analytics companies as described in the section below</p></dd>
-
-							<dt><h2>Automatic Data Collection and Advertising.</h2></dt>
-
-							<dd><p>We may work with analytics companies to help us understand how the Application is being used, such as the frequency and duration of usage. We work with advertisers and third party advertising networks, who need to know how you interact with advertising provided in the Application which helps us keep the cost of the Application low. Advertisers and advertising networks use some of the information collected by the Application, including, but not limited to, the unique identification IDs of your mobile device. To protect the anonymity of this information, we use an encryption technology to help ensure that these third parties can’t identify you personally.</p>
-
-							<p>If you’d like to opt-out from third party use of this type of information to help serve targeted advertising, please visit the section entitled “Opt-out” below.</p></dd>
-
-							<dt><h2>Opt-out rights.</h2></dt>
-
-							<dd><p>There are multiple opt-out options for users of this Application:</p>
-
-							<p>Opt-out of all information collection by uninstalling the Application: You can stop all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
-
-							<p>Opt-out from the use of information to serve targeted advertising by advertisers and/or third party network advertisers: you may at any time opt-out from further allowing us to have access to your <acronym title="Identifier For Advertisers">IDFA</acronym> in the operating system settings.</p>
-
-							<p>Data Retention Policy, Managing Your Information</p>
-
-							<p>We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We will retain Automatically Collected information for up to 48 months and thereafter may store it in aggregate. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.</p></dd>
-
-							<dt><h2>Security</h2></dt>
-
-							<dd><p>We are concerned about safeguarding the confidentiality of your information. We provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve our Application. Please be aware that, although we endeavor provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.</p></dd>
-
-							<dt><h2>Changes</h2></dt>
-
-							<dd><p>This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by posting the new Privacy Policy here. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p></dd>
-						</dl>
-					</center>
-					</details>
-					<dt><h2><i>Contact us</i></h2></dt>
-							<dd><p>If you have any questions regarding privacy when using the app, or have questions about our practices, please contact us:</p></dd>
-							<h3 id = "FeedBack">Mail:<a href="mailto:chobotov@bk.ru"><span style="color: #EB5757;"><adress>chobotov@bk.ru</adress></span></a></h3>
+	<section id="Games" class="section reveal">
+		<div class="section-title-centered">
+			<p class="section-eyebrow" data-i18n="games.eyebrow">Portfolio</p>
+			<h2 data-i18n="games.title">Games</h2>
+		</div>
+		<div id="slider-wrap">
+				<div id="slider">
+				<div class="slide">
+					<a href="http://play.google.com/store/apps/details?id=com.chobotov.tapswap" target="_blank" rel="noopener noreferrer">
+						<img src="img/TapSwap.png" alt="Tap Swap game">
+					</a>
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.tapSwapTitle">Tap Swap</div>
+						<p class="game-meta" data-i18n="games.tapSwapMeta">Arcade tap game for Android. Simple controls, fast sessions and score chasing.</p>
+					</div>
+				</div>
+				<div class="slide">
+					<a href="https://github.com/Chobotov/Project-Battle" target="_blank" rel="noopener noreferrer">
+						<img src="img/ProjectBattle.png" alt="Project Battle game">
+					</a>
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.projectBattleTitle">Project Battle</div>
+						<p class="game-meta" data-i18n="games.projectBattleMeta">Prototype of an action game. Open-source project with experiments in combat mechanics.</p>
+					</div>
+				</div>
+							<div class="slide">
+					<img src="img/Soon2.png" alt="New games coming soon">
+					<div class="game-caption">
+						<div class="game-title" data-i18n="games.comingSoonTitle">Coming soon</div>
+						<p class="game-meta" data-i18n="games.comingSoonMeta">New mobile projects are in development. Stay tuned!</p>
+					</div>
+				</div>
+			</div>
+			<div class="games-legend">
+				<span class="games-legend-item" data-i18n="games.legend.tapSwap">Tap Swap</span>
+				<span class="games-legend-separator">•</span>
+				<span class="games-legend-item" data-i18n="games.legend.projectBattle">Project Battle</span>
+				<span class="games-legend-separator">•</span>
+				<span class="games-legend-item" data-i18n="games.legend.more">More games coming soon</span>
+							</div>
 						</div>
 					</section>
-				</body>
+
+	<section id="PolicyPrivacy" class="section reveal">
+						<div class="pptext">
+			<div class="section-title-centered">
+				<p class="section-eyebrow" data-i18n="privacy.eyebrow">Legal</p>
+				<h2 data-i18n="privacy.title"><bdo dir="ltr">PRIVACY POLICY</bdo></h2>
+			</div>
+			<div class="pptext-inner">
+				<dl>
+					<dd>
+						<p data-i18n="privacy.intro">This privacy policy governs your use of the software applications for mobile devices that was created by Chebotov Nikita. The Applications are mobile video games.</p>
+					</dd>
+					<details>
+						<summary data-i18n="privacy.section1.summary">Information we use</summary>
+						<dt><h2 data-i18n="privacy.section1.title1">Information used by application</h2></dt>
+						<dt><h2 data-i18n="privacy.section1.title2">User Provided Information</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section1.p1">The Applications currently do not collect any user provided information.</p>
+							<p data-i18n="privacy.section1.p2">We may also use the information you provided us to contact you from time to time to provide you with important information, required notices and marketing promotions.</p>
+						</dd>
+					</details>
+					<details>
+						<summary data-i18n="privacy.section2.summary">Automatic data and device information</summary>
+						<dt><h2 data-i18n="privacy.section2.title1">Automatically Collected Information</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section2.p1">The Applications may collect certain information automatically, including, but not limited to, the type of mobile device you use, your mobile device's <abbr title="Identifier For Advertisers">IDFA</abbr> (for advertising), your mobile operating system, and information about the way you use the Application.</p>
+						</dd>
+						<dt><h2 data-i18n="privacy.section2.title2">Collecting precise real time location information of the device</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section2.p2">This Application does not collect precise information about the location of your mobile device.</p>
+						</dd>
+					</details>
+					<details>
+						<summary data-i18n="privacy.section3.summary">Third parties and advertising</summary>
+						<dt><h2 data-i18n="privacy.section3.title1">Third parties access to information obtained by the Application</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section3.p1">We will share your information with third parties only in the ways that are described in this privacy statement.</p>
+							<p data-i18n="privacy.section3.p2">We may disclose User Provided and Automatically Collected Information:</p>
+							<p data-i18n="privacy.section3.p3">- as required by law, such as to comply with a subpoena, or similar legal process;</p>
+							<p data-i18n="privacy.section3.p4">- when we believe in good faith that disclosure is necessary to protect our rights, protect your safety or the safety of others, investigate fraud, or respond to a government request;</p>
+							<p data-i18n="privacy.section3.p5">- with our trusted services providers who work on our behalf, do not have an independent use of the information we disclose to them, and have agreed to adhere to the rules set forth in this privacy statement;</p>
+							<p data-i18n="privacy.section3.p6">- if Chebotov Nikita is involved in a merger, acquisition, or sale of all or a portion of its assets, you will be notified via email and/or a prominent notice on our website of any change in ownership or uses of this information, as well as any choices you may have regarding this information;</p>
+							<p data-i18n="privacy.section3.p7">- to advertisers and third party advertising networks and analytics companies as described in the section below.</p>
+						</dd>
+						<dt><h2 data-i18n="privacy.section3.title2">Automatic Data Collection and Advertising</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section3.p8">We may work with analytics companies to help us understand how the Application is being used, such as the frequency and duration of usage. We work with advertisers and third party advertising networks, who need to know how you interact with advertising provided in the Application which helps us keep the cost of the Application low. Advertisers and advertising networks use some of the information collected by the Application, including, but not limited to, the unique identification IDs of your mobile device. To protect the anonymity of this information, we use an encryption technology to help ensure that these third parties can’t identify you personally.</p>
+							<p data-i18n="privacy.section3.p9">If you’d like to opt-out from third party use of this type of information to help serve targeted advertising, please visit the section entitled “Opt-out” below.</p>
+						</dd>
+					</details>
+					<details>
+						<summary data-i18n="privacy.section4.summary">Your choices and data retention</summary>
+						<dt><h2 data-i18n="privacy.section4.title1">Opt-out rights</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section4.p1">There are multiple opt-out options for users of this Application:</p>
+							<p data-i18n="privacy.section4.p2">Opt-out of all information collection by uninstalling the Application: You can stop all collection of information by the Application easily by uninstalling the Application. You may use the standard uninstall processes as may be available as part of your mobile device or via the mobile application marketplace or network.</p>
+							<p data-i18n="privacy.section4.p3">Opt-out from the use of information to serve targeted advertising by advertisers and/or third party network advertisers: you may at any time opt-out from further allowing us to have access to your <acronym title="Identifier For Advertisers">IDFA</acronym> in the operating system settings.</p>
+							<p data-i18n="privacy.section4.p4">Data Retention Policy, Managing Your Information.</p>
+							<p data-i18n="privacy.section4.p5">We will retain User Provided data for as long as you use the Application and for a reasonable time thereafter. We will retain Automatically Collected information for up to 48 months and thereafter may store it in aggregate. Please note that some or all of the User Provided Data may be required in order for the Application to function properly.</p>
+						</dd>
+					</details>
+							<details>
+						<summary data-i18n="privacy.section5.summary">Security and changes</summary>
+						<dt><h2 data-i18n="privacy.section5.title1">Security</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section5.p1">We are concerned about safeguarding the confidentiality of your information. We provide physical, electronic, and procedural safeguards to protect information we process and maintain. For example, we limit access to this information to authorized employees and contractors who need to know that information in order to operate, develop or improve our Application. Please be aware that, although we endeavor provide reasonable security for information we process and maintain, no security system can prevent all potential security breaches.</p>
+						</dd>
+						<dt><h2 data-i18n="privacy.section5.title2">Changes</h2></dt>
+						<dd>
+							<p data-i18n="privacy.section5.p2">This Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by posting the new Privacy Policy here. You are advised to consult this Privacy Policy regularly for any changes, as continued use is deemed approval of all changes.</p>
+						</dd>
+					</details>
+				</dl>
+				<dt><h2><i data-i18n="contact.title">Contact us</i></h2></dt>
+				<dd>
+					<p data-i18n="contact.text">If you have any questions regarding privacy when using the app, or have questions about our practices, please contact us:</p>
+				</dd>
+				<h3 id="FeedBack">
+					<span data-i18n="contact.mailLabel">Mail:</span>
+					<a href="mailto:chobotov@bk.ru">
+						<span class="mail-highlight">
+							<address>chobotov@bk.ru</address>
+						</span>
+					</a>
+				</h3>
+				<div class="contact-extra">
+					<p data-i18n="contact.telegram">Telegram: <a href="https://t.me/Chobotov" target="_blank" rel="noopener noreferrer">@Chobotov</a></p>
+					<p data-i18n="contact.github">GitHub: <a href="https://github.com/Chobotov" target="_blank" rel="noopener noreferrer">github.com/Chobotov</a></p>
+					<p data-i18n="contact.linkedin">LinkedIn: <a href="https://www.linkedin.com/in/nikita-chobotov-065b68193" target="_blank" rel="noopener noreferrer">linkedin.com/in/nikita-chobotov-065b68193</a></p>
+					<p data-i18n="contact.timezone">Timezone: GMT+3</p>
+				</div>
+			</div>
+						</div>
+					</section>
+
 				<footer>
-					©2019 Chobotov
+		<span data-i18n="footer">©2019 Chobotov</span>
 				</footer>
+	</div>
+</body>
 				</html>
