@@ -6,8 +6,6 @@
 	<meta name = "keywords" content = "Chobotov,Games,TapSwap,Партфолио">
 	<meta name = "description" content = "Блог о процессе обучения веб-технологиям">
 	<title>Chobotov</title>
-	<script src="jquery-1.7.2.min.js"></script>
-	<script src="script.js"></script>
 	<link rel="stylesheet" href="style.css"/>
 </head>
 <body>
@@ -67,7 +65,7 @@
 				<div class="experience-project">
 					<div class="project-content">
 						<div class="project-image-wrapper landscape">
-							<img src="img/railroad-empire.png" alt="RailRoad Empire" class="project-image landscape" onerror="this.style.display='none'">
+							<img src="img/railroad-empire.png" alt="RailRoad Empire" class="project-image landscape" loading="lazy" onerror="this.style.display='none'">
 						</div>
 						<div class="project-details">
 							<h4>
@@ -95,7 +93,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper">
-								<img src="img/color-mystery.png" alt="Color Mystery" class="project-image" onerror="this.style.display='none'">
+								<img src="img/color-mystery.png" alt="Color Mystery" class="project-image" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -114,7 +112,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper">
-								<img src="img/grand-fishing.png" alt="Grand Fishing Game" class="project-image" onerror="this.style.display='none'">
+								<img src="img/grand-fishing.png" alt="Grand Fishing Game" class="project-image" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -133,7 +131,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper">
-								<img src="img/legionlands.png" alt="Legionlands" class="project-image" onerror="this.style.display='none'">
+								<img src="img/legionlands.png" alt="Legionlands" class="project-image" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -151,7 +149,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper landscape">
-								<img src="img/legendlands.png" alt="Legendlands" class="project-image landscape" onerror="this.style.display='none'">
+								<img src="img/legendlands.png" alt="Legendlands" class="project-image landscape" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -170,7 +168,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper">
-								<img src="img/endless-lands.png" alt="Endless lands" class="project-image" onerror="this.style.display='none'">
+								<img src="img/endless-lands.png" alt="Endless lands" class="project-image" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -188,7 +186,7 @@
 					<div class="experience-project">
 						<div class="project-content">
 							<div class="project-image-wrapper landscape">
-								<img src="img/vr-arena.png" alt="Black Bears VR Arena" class="project-image landscape" onerror="this.style.display='none'">
+								<img src="img/vr-arena.png" alt="Black Bears VR Arena" class="project-image landscape" loading="lazy" onerror="this.style.display='none'">
 							</div>
 							<div class="project-details">
 								<h4>
@@ -480,5 +478,8 @@
 		<span data-i18n="footer">©2019 Chobotov</span>
 				</footer>
 	</div>
+	<!-- Load scripts at the end to avoid blocking initial render -->
+	<script src="jquery-1.7.2.min.js"></script>
+	<script src="script.js"></script>
 </body>
 </html>
